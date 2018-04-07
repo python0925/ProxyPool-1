@@ -104,17 +104,6 @@ class Crawler(object, metaclass=ProxyMetaclass):
                 yield result.replace(' ', '')
 
 
-    def crawl_kxdaili(self):
-        for i in range(1, 11):
-            start_url = 'http://www.kxdaili.com/ipList/{}.html#ip'.format(i)
-            html = get_page(start_url)
-            ip_address = re.compile('<tr.*?>\s*<td>(.*?)</td>\s*<td>(.*?)</td>')
-            # \s* 匹配空格，起到换行作用
-            re_ip_address = ip_address.findall(html)
-            for address, port in re_ip_address:
-                result = address + ':' + port
-                yield result.replace(' ', '')
-
 
     def crawl_premproxy(self):
         for i in ['China-01','China-02','China-03','China-04','Taiwan-01']:
